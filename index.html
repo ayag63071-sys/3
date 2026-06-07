@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Heterocyclic Alkaloids ✧ Violet Edition ✧ 30 MCQs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Quicksand', 'Poppins', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #e9d9ff 0%, #d6c1f5 50%, #c7adee 100%);
+            padding: 2rem 1.5rem;
+            position: relative;
+        }
+
+        /* floating soft violet magical particles */
+        body::before {
+            content: "✧";
+            font-size: 220px;
+            color: rgba(160, 120, 210, 0.2);
+            position: fixed;
+            bottom: -40px;
+            left: -50px;
+            pointer-events: none;
+            transform: rotate(-5deg);
+        }
+        body::after {
+            content: "✦";
+            font-size: 270px;
+            color: rgba(130, 90, 190, 0.2);
+            position: fixed;
+            top: -50px;
+            right: -40px;
+            pointer-events: none;
+            transform: rotate(10deg);
+        }
+
+        .quiz-wrapper {
+            max-width: 1020px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* violet glass header */
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(16px);
+            background: rgba(220, 200, 255, 0.55);
+            border-radius: 60px;
+            padding: 1.3rem 1rem;
+            box-shadow: 0 12px 32px rgba(100, 70, 150, 0.25);
+            border: 1px solid rgba(255, 245, 255, 0.7);
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(125deg, #5e3a8a, #8b5fbc, #b17fd9);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+        }
+        .hero p {
+            color: #4a2e6b;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+        }
+
+        /* glass card violet */
+        .quiz-card {
+            background: rgba(240, 230, 255, 0.7);
+            backdrop-filter: blur(14px);
+            border-radius: 48px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(90, 60, 140, 0.2);
+            border: 1px solid rgba(255, 240, 255, 0.75);
+        }
+
+        .question-item {
+            background: rgba(255, 248, 255, 0.65);
+            backdrop-filter: blur(5px);
+            border-radius: 36px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1.6rem;
+            border: 1px solid #e2ceff;
+            transition: 0.2s;
+        }
+
+        .question-text {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: #391f60;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .q-num {
+            background: #956bc2;
+            color: white;
+            border-radius: 50px;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px #c9ace0;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(250, 245, 255, 0.85);
+            padding: 8px 18px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+        .option:hover {
+            background: #f2e6ff;
+            border-color: #c4a3e3;
+            transform: scale(0.99);
+        }
+        input[type="radio"] {
+            accent-color: #8c60c7;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .option label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #351d54;
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .check-btn {
+            background: linear-gradient(95deg, #8d68c2, #6d46a3);
+            border: none;
+            padding: 8px 24px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            font-size: 0.85rem;
+            letter-spacing: 0.4px;
+        }
+        .check-btn:hover {
+            background: #5c3b8c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(100, 70, 150, 0.35);
+        }
+        .feedback {
+            margin-top: 12px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(255, 245, 255, 0.85);
+            display: inline-block;
+            width: auto;
+            backdrop-filter: blur(4px);
+        }
+        .feedback.correct {
+            color: #2a6b42;
+            border-left: 5px solid #9fd4b0;
+            background: #e8f5ec;
+        }
+        .feedback.wrong {
+            color: #ac4c6b;
+            border-left: 5px solid #f1b5cb;
+            background: #ffeef5;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: 1px dashed #dac2ff;
+        }
+
+        .submit-area {
+            text-align: center;
+            margin-top: 0.8rem;
+        }
+        .big-check {
+            background: #8965bd;
+            padding: 12px 36px;
+            font-size: 1rem;
+            border-radius: 60px;
+            margin: 8px;
+            box-shadow: 0 8px 18px #bba8e0;
+        }
+        .score-badge {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            background: rgba(225, 210, 250, 0.85);
+            display: inline-block;
+            width: auto;
+            margin: 15px auto 0;
+            padding: 9px 30px;
+            border-radius: 100px;
+            backdrop-filter: blur(8px);
+            color: #4d2c77;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #785d9e;
+            margin-top: 2rem;
+        }
+        @media (max-width: 680px) {
+            body { padding: 1rem; }
+            .quiz-card { padding: 1rem; }
+            .question-text { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-wrapper">
+    <div class="hero">
+        <h1>✦ VIOLET HETEROCYCLICS ✦</h1>
+        <p>Quinoline · Isoquinoline · Indole · Curare · Ergot · Nux vomica · Vinca</p>
+        <p>⋆ 30 challenging MCQs ⋆ click CHECK each answer ⋆</p>
+    </div>
+
+    <div class="quiz-card" id="quizContainer"></div>
+
+    <div class="submit-area">
+        <button class="check-btn big-check" id="globalScoreBtn">💜 REVEAL MY SCORE 💜</button>
+        <div id="scoreDisplay" class="score-badge"></div>
+    </div>
+    <footer>✧ based on Heterocyclic Alkaloid lecture (Cinchona, Ipeca, Curare, Strychnine, Physostigmine, Ergot, Rauwolfia & more) ✧</footer>
+</div>
+
+<script>
+    // 30 meticulous questions from the provided PDF (Heterocyclic alkaloids: quinoline, isoquinoline, indole, etc.)
+    const questions = [
+        { text: "Which Cinchona alkaloid is the major antimalarial agent and best choice for chloroquine-resistant Plasmodium falciparum?", options: ["Quinidine", "Cinchonine", "Quinine", "Cinchonidine"], correct: 2 },
+        { text: "The Thalleoquin test is specific for which alkaloid?", options: ["Quinine", "Quinidine", "Cinchonine", "Strychnine"], correct: 0 },
+        { text: "Quinidine is mainly used clinically as:", options: ["Antimalarial", "Antiarrhythmic (auricular fibrillation)", "Muscle relaxant", "Antiemetic"], correct: 1 },
+        { text: "Which two Cinchona alkaloids have no methoxy group at position 6?", options: ["Quinine & quinidine", "Cinchonine & cinchonidine", "Quinidine & cinchonine", "Cinchonidine & quinine"], correct: 1 },
+        { text: "Emetine (from Ipecacuanha) contains which type of heterocyclic nucleus?", options: ["Indole", "Pyridine", "Tetrahydroisoquinoline", "Quinoline"], correct: 2 },
+        { text: "Ipecac alkaloid emetine is primarily used for:", options: ["Malaria", "Amoebic dysentery", "Hypertension", "Asthma"], correct: 1 },
+        { text: "O-Methylpsychotrine (from Ipeca) has gained interest in research for:", options: ["Antimalarial", "HIV inhibition (reverse transcriptase)", "Anticancer", "Antidepressant"], correct: 1 },
+        { text: "Berberine from Hydrastis is a:", options: ["Yellow crystalline quaternary alkaloid", "Colorless liquid", "Strongly basic tertiary amine", "Indole alkaloid"], correct: 0 },
+        { text: "d-Tubocurarine is a:", options: ["Levo tertiary alkaloid", "Quaternary alkaloid, neuromuscular blocker", "Simple pyridine", "Bronchodilator"], correct: 1 },
+        { text: "Curare is ineffective orally because:", options: ["It is degraded by stomach acid", "Poor absorption, large molecule", "It is not absorbed from gut", "All of the above"], correct: 2 }, // general reason
+        { text: "Strychnine from Nux vomica acts pharmacologically as:", options: ["GABA agonist", "Glycine receptor antagonist (CNS stimulant)", "Dopamine agonist", "Opioid agonist"], correct: 1 },
+        { text: "Lethal dose of strychnine for humans is around:", options: ["500 mg", "30-100 mg", "5 mg", "1g"], correct: 1 },
+        { text: "Brucine is a dimethoxy derivative of strychnine; its potency compared to strychnine is:", options: ["Equal", "About 1/50th", "Twice", "Ten times stronger"], correct: 1 },
+        { text: "Physostigmine is a cholinergic alkaloid used mainly for:", options: ["Glaucoma (miotic)", "Bronchodilation", "Hypertension", "Anticoagulation"], correct: 0 },
+        { text: "Physostigmine can be used as antidote for poisoning with:", options: ["Atropine (anticholinergic)", "Morphine", "Aspirin", "Paracetamol"], correct: 0 },
+        { text: "Vinblastine and vincristine from Catharanthus roseus are used in:", options: ["Antimicrobial", "Anticancer (Hodgkin's, leukemia)", "Antimalarial", "Anti-inflammatory"], correct: 1 },
+        { text: "Vincristine differs from vinblastine by having:", options: ["N-formyl group instead of N-methyl", "Extra methoxy", "Lack of dimer", "Quaternary center"], correct: 0 },
+        { text: "Reserpine from Rauwolfia serpentina lowers blood pressure by:", options: ["Blocking calcium channels", "Destroying storage vesicles of biogenic amines", "ACE inhibition", "Beta-blockade"], correct: 1 },
+        { text: "Ergot alkaloids are derivatives of:", options: ["Lysergic acid", "Tryptamine", "Indole-3-acetic acid", "Phenylalanine"], correct: 0 },
+        { text: "Ergotamine (combined with caffeine) is used for:", options: ["Migraine headache (vasoconstrictor)", "Hypertension", "Asthma", "Diabetes"], correct: 0 },
+        { text: "The suffix \"-ine\" vs \"-nine\" in ergot alkaloids indicates:", options: ["Isomerism (derived from lysergic vs isosyergic acid)", "Water solubility", "Basic strength", "Potency difference"], correct: 0 },
+        { text: "Bromocryptine (derived from ergocryptine) is used in:", options: ["Parkinsonism & hyperprolactinemia", "Migraine", "Gout", "Malaria"], correct: 0 },
+        { text: "LSD (lysergic acid diethylamide) is:", options: ["Natural ergot alkaloid", "Semi-synthetic, hallucinogenic", "Used for glaucoma", "Antidepressant"], correct: 1 },
+        { text: "Van Urk test for ergot alkaloids uses para-dimethylaminobenzaldehyde to produce:", options: ["Blue colour", "Red colour", "Green precipitate", "Yellow fluorescence"], correct: 0 },
+        { text: "Which isoquinoline alkaloid is used to control uterine hemorrhage?", options: ["Hydrastine", "Berberine", "Emetine", "Cephaline"], correct: 0 },
+        { text: "The Erythroquin test is used to identify which class?", options: ["Cinchona alkaloids", "Ergot alkaloids", "Purines", "Tropane alkaloids"], correct: 0 },
+        { text: "Strychnine's bitter taste and convulsant property is due to:", options: ["Blockade of glycine receptors", "Activation of NMDA", "GABA potentiation", "Serotonin agonism"], correct: 0 },
+        { text: "The dimeric indole alkaloids vinblastine/vincristine mechanism is:", options: ["Microtubule inhibition (antimitotic)", "Topoisomerase inhibition", "DNA intercalation", "Tyrosine kinase inhibition"], correct: 0 },
+        { text: "Ergonovine (ergometrine) is a water-soluble simple amide ergot alkaloid used for:", options: ["Uterine contraction (oxytocic)", "Migraine", "Parkinson", "Hypertension"], correct: 0 },
+        { text: "Which of the following is a competitive neuromuscular blocker used as skeletal muscle relaxant during surgery?", options: ["d-Tubocurarine", "Physostigmine", "Reserpine", "Caffeine"], correct: 0 }
+    ];
+
+    // sanity check 30
+    if (questions.length !== 30) console.warn('question count', questions.length);
+    const totalQ = 30;
+    let userSelections = new Array(totalQ).fill(null);
+    let feedbackCache = new Array(totalQ).fill(null);
+    const container = document.getElementById('quizContainer');
+
+    function renderQuiz() {
+        let html = '';
+        questions.forEach((q, idx) => {
+            html += `
+                <div class="question-item" data-qidx="${idx}">
+                    <div class="question-text">
+                        <span class="q-num">${idx+1}</span>
+                        <span>${q.text}</span>
+                    </div>
+                    <div class="options" id="options-${idx}">
+                        ${q.options.map((opt, optIdx) => `
+                            <div class="option" data-q="${idx}" data-opt="${optIdx}">
+                                <input type="radio" name="q${idx}" id="q${idx}_opt${optIdx}" value="${optIdx}" ${userSelections[idx] === optIdx ? 'checked' : ''}>
+                                <label for="q${idx}_opt${optIdx}">${String.fromCharCode(65+optIdx)}. ${opt}</label>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div>
+                        <button class="check-btn" data-check="${idx}">💜 CHECK 💜</button>
+                    </div>
+                    <div id="feedback-${idx}" class="feedback" style="margin-top: 10px;"></div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+
+        // attach listeners for each question
+        for (let i = 0; i < totalQ; i++) {
+            const radios = document.querySelectorAll(`input[name="q${i}"]`);
+            radios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const val = parseInt(e.target.value);
+                    userSelections[i] = val;
+                });
+            });
+            const checkBtn = document.querySelector(`button[data-check="${i}"]`);
+            if (checkBtn) {
+                checkBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    checkSingleAnswer(i);
+                });
+            }
+            // restore cached feedback if exists
+            if (feedbackCache[i]) {
+                const fbDiv = document.getElementById(`feedback-${i}`);
+                if (fbDiv) fbDiv.innerHTML = feedbackCache[i];
+            }
+        }
+    }
+
+    function checkSingleAnswer(idx) {
+        const q = questions[idx];
+        const selected = userSelections[idx];
+        const feedbackDiv = document.getElementById(`feedback-${idx}`);
+        if (selected === undefined || selected === null) {
+            feedbackDiv.innerHTML = '✦ Please select an answer first! ✦';
+            feedbackDiv.className = 'feedback wrong';
+            feedbackCache[idx] = feedbackDiv.innerHTML;
+            return;
+        }
+        const isCorrect = (selected === q.correct);
+        const correctLetter = String.fromCharCode(65 + q.correct);
+        const correctAnswerText = q.options[q.correct];
+        if (isCorrect) {
+            feedbackDiv.innerHTML = `✓💜 Perfect! Correct. 💜✓`;
+            feedbackDiv.className = 'feedback correct';
+        } else {
+            feedbackDiv.innerHTML = `✗ Oops! Wrong. Correct: ${correctLetter}. ${correctAnswerText} ✗`;
+            feedbackDiv.className = 'feedback wrong';
+        }
+        feedbackCache[idx] = feedbackDiv.innerHTML;
+    }
+
+    function computeScore() {
+        let score = 0;
+        for (let i = 0; i < totalQ; i++) {
+            if (userSelections[i] !== null && userSelections[i] === questions[i].correct) {
+                score++;
+            }
+        }
+        return score;
+    }
+
+    function displayGlobalScore() {
+        const correctCount = computeScore();
+        const percent = Math.round((correctCount / totalQ) * 100);
+        const scoreDiv = document.getElementById('scoreDisplay');
+        let unanswered = userSelections.filter(s => s === null).length;
+        scoreDiv.innerHTML = `✧ SCORE: ${correctCount} / ${totalQ}  (${percent}%) ✧<br>💜 ${unanswered} question(s) not checked — click CHECK for each 💜`;
+        scoreDiv.style.transform = "scale(1.01)";
+        setTimeout(() => { scoreDiv.style.transform = ""; }, 300);
+        if (unanswered === 0 && correctCount === totalQ) {
+            scoreDiv.innerHTML += `<span style="display:block; font-size:0.9rem;">🌟 PERFECT HETEROCYCLIC ALCHEMY! 🌟</span>`;
+        }
+    }
+
+    // initial rendering
+    renderQuiz();
+
+    // attach global score button
+    const scoreBtn = document.getElementById('globalScoreBtn');
+    if (scoreBtn) {
+        scoreBtn.addEventListener('click', () => {
+            displayGlobalScore();
+        });
+    }
+</script>
+</body>
+</html>
